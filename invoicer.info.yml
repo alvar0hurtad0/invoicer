@@ -15,6 +15,7 @@ dependencies:
   - quickedit
   - editor
   - entity_reference
+  - field_ui
   - help
   - image
   - menu_ui

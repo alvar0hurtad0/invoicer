@@ -1,0 +1,5 @@
+name: Invoicer invoice
+type: module
+description: Base data structure for Invoices.
+core: 8.x
+package: Invoicer

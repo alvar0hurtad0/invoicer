@@ -26,6 +26,8 @@ dependencies:
   - dblog
   - shortcut
   - toolbar
+  # distribution
+  - invoicer_invoice
 themes:
   - bartik
   - seven

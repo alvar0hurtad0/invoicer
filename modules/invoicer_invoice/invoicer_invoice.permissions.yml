@@ -1,0 +1,22 @@
+add invoice base entities:
+  title: 'Create new Invoice'
+
+administer invoice base entities:
+  title: 'Administer Invoice base entities'
+  description: 'Allow to access the administration form to configure Invoice base entities.'
+  restrict access: true
+
+delete invoice base entities:
+  title: 'Delete Invoice base entities'
+
+edit invoice base entities:
+  title: 'Edit Invoice base entities'
+
+access invoice base overview:
+  title: 'Access the Invoice base overview page'
+
+view published invoice base entities:
+  title: 'View published Invoice base entities'
+
+view unpublished invoice base entities:
+  title: 'View unpublished Invoice base entities'

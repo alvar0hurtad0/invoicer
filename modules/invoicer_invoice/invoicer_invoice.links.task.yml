@@ -1,0 +1,22 @@
+# Invoice base routing definition
+invoice_base.settings_tab:
+  route_name: invoice_base.settings
+  title: 'Settings'
+  base_route: invoice_base.settings
+
+entity.invoice_base.canonical:
+  route_name: entity.invoice_base.canonical
+  base_route: entity.invoice_base.canonical
+  title: 'View'
+
+entity.invoice_base.edit_form:
+  route_name: entity.invoice_base.edit_form
+  base_route: entity.invoice_base.canonical
+  title: 'Edit'
+
+entity.invoice_base.delete_form:
+  route_name:  entity.invoice_base.delete_form
+  base_route:  entity.invoice_base.canonical
+  title: Delete
+  weight: 10
+

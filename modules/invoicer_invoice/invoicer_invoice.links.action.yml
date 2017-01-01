@@ -1,0 +1,5 @@
+entity.invoice_base.add_form:
+  route_name: entity.invoice_base.add_form
+  title: 'Add Invoice base'
+  appears_on:
+    - entity.invoice_base.collection

@@ -6,6 +6,7 @@
  * @FieldType(
  *   id = "line_item",
  *   label = @Translation("Line item field"),
+ *   default_widget = "line_item_widget"
  * )
  */
 

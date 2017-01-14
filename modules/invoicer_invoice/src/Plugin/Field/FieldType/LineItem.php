@@ -25,7 +25,8 @@ class LineItem extends FieldItemBase {
       'columns' => array(
         'item' => array(
           'type' => 'text',
-          'size' => 'big',
+          'size' => 'tiny',
+          'not null' => FALSE,
         ),
       ),
     );
@@ -43,7 +44,7 @@ class LineItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
-    $properties['item'] = DataDefinition::create('text')
+    $properties['item'] = DataDefinition::create('string')
       ->setLabel(t('Item description'));
 
     return $properties;

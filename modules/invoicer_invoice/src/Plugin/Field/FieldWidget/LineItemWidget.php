@@ -51,7 +51,7 @@ class LineItemWidget extends WidgetBase {
       '#options' => ['21' => '21%', '19'=> '19%'],
     ];
 
-    $form['#attributes']['class'][] = 'container-inline';
+    $elements['#attributes']['class'][] = 'container-inline';
     return $elements;
   }
 

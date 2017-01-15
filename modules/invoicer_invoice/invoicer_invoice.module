@@ -34,3 +34,59 @@ function invoicer_invoice_theme() {
     ],
   ];
 }
+
+/**
+ * Implements hook_form_alter()
+ */
+function invoicer_invoice_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+  if ($form_id == 'invoice_base_add_form' || $form_id == 'invoice_base_edit_form') {
+
+    // Control fieldset.
+    $form['control'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Control'),
+    ];
+    $form['control']['number'] = $form['number'];
+    unset($form['number']);
+    $form['control']['date'] = $form['date'];
+    unset($form['date']);
+
+    // Customer fieldset.
+    $form['customer'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Customer'),
+    ];
+    $form['customer']['customer_id'] = $form['customer_id'];
+    unset($form['customer_id']);
+    $form['customer']['customer_name'] = $form['customer_name'];
+    unset($form['customer_name']);
+    $form['customer']['customer_address'] = $form['customer_address'];
+    unset($form['customer_address']);
+
+    // Provider Fieldset.
+    $form['provider'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Provider'),
+    ];
+    $form['provider']['provider_id'] = $form['provider_id'];
+    unset($form['provider_id']);
+    $form['provider']['provider_name'] = $form['provider_name'];
+    unset($form['provider_name']);
+    $form['provider']['provider_address'] = $form['provider_address'];
+    unset($form['provider_address']);
+
+    // Abstract fieldset.
+    // Provider Fieldset.
+    $form['abstract'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Abstract'),
+    ];
+
+    $form['abstract']['sub_total'] = $form['sub_total'];
+    unset($form['sub_total']);
+    $form['abstract']['vat'] = $form['vat'];
+    unset($form['vat']);
+    $form['abstract']['total'] = $form['total'];
+    unset($form['total']);
+  }
+}

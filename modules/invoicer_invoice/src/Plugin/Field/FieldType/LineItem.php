@@ -25,11 +25,23 @@ class LineItem extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     return array(
       'columns' => array(
-        'item' => array(
+        'item' => [
           'type' => 'text',
           'size' => 'small',
           'not null' => FALSE,
-        ),
+        ],
+        'quantity' => [
+          'type' => 'float',
+          'not null' => FALSE,
+        ],
+        'ammount' => [
+          'type' => 'float',
+          'not null' => FALSE,
+        ],
+        'vat' => [
+          'type' => 'float',
+          'not null' => FALSE,
+        ],
       ),
     );
   }
@@ -48,6 +60,16 @@ class LineItem extends FieldItemBase {
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties['item'] = DataDefinition::create('string')
       ->setLabel(t('Item description'));
+
+    $properties['quantity'] = DataDefinition::create('float')
+      ->setLabel(t('Item quantity'));
+
+    $properties['ammount'] = DataDefinition::create('float')
+      ->setLabel(t('Item ammount'));
+
+
+    $properties['vat'] = DataDefinition::create('float')
+      ->setLabel(t('Item vat'));
 
     return $properties;
   }

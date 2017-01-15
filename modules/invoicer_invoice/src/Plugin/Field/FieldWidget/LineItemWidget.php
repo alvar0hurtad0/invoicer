@@ -22,24 +22,37 @@ class LineItemWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $value = $items->get($delta)->get('item')->getValue();
-    $element += array(
+    $elements['item'] = [
       '#type' => 'textfield',
-      '#default_value' => $value,
+      '#default_value' => $items->get($delta)->get('item')->getValue(),
       '#size' => 50,
       '#maxlength' => 128,
-      '#element_validate' => array(
-        array($this, 'validate'),
-      ),
-    );
-    return array('item' => $element);
-  }
+    ];
 
-  /**
-   * Validate the item field.
-   */
-  public function validate($element, FormStateInterface $form_state) {
-    return TRUE;
+    $elements['quantity'] = [
+      '#type' => 'number',
+      '#default_value' => $items->get($delta)->get('quantity')->getValue(),
+      '#size' => 4,
+      '#scale' => 2,
+      '#maxlength' => 6,
+    ];
+
+    $elements['ammount'] = [
+      '#type' => 'number',
+      '#default_value' => $items->get($delta)->get('ammount')->getValue(),
+      '#size' => 4,
+      '#scale' => 2,
+      '#maxlength' => 6,
+    ];
+
+    $elements['vat'] = [
+      '#type' => 'select',
+      '#default_value' => $items->get($delta)->get('vat')->getValue(),
+      '#options' => ['21' => '21%', '19'=> '19%'],
+    ];
+
+    $form['#attributes']['class'][] = 'container-inline';
+    return $elements;
   }
 
 }

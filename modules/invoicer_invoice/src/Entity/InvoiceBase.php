@@ -183,26 +183,26 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setDescription(t('Date of the invoice.'))
       ->setSetting('datetime_type', 'date')
       ->setDefaultValue('')
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'label' => 'above',
         'weight' => -4,
         'type' => 'datetime_default',
-      ))
-      ->setDisplayOptions('view', array(
+      ])
+      ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'datetime_default',
         'weight' => -4,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['number'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Number'))
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'label' => 'above',
         'type' => 'number',
         'weight' => -4,
-      ))
+      ])
       ->setDisplayOptions('view', array(
         'label' => 'above',
       ))
@@ -224,7 +224,11 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['customer_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Customer ID'))
       ->setSettings(['max_length' => 16, 'text_processing' => 0])
-      ->setDisplayOptions('form', ['label' => 'above', 'type' => 'string_textfield'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -232,7 +236,11 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['customer_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Customer name'))
       ->setSettings(['max_length' => 16])
-      ->setDisplayOptions('form', ['label' => 'above', 'type' => 'string_textfield'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -240,7 +248,10 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['customer_address'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Customer address'))
       ->setSettings(['max_length' => 256, 'text_processing' => 1])
-      ->setDisplayOptions('form', ['label' => 'above', 'type' => 'string_textfield'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -249,7 +260,11 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['provider_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Provider ID'))
       ->setSettings(['max_length' => 16, 'text_processing' => 0])
-      ->setDisplayOptions('form', ['label' => 'above', 'type' => 'string_textfield'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -257,7 +272,11 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['provider_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Provider name'))
       ->setSettings(['max_length' => 16])
-      ->setDisplayOptions('form', ['label' => 'above', 'type' => 'string_textfield'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -265,7 +284,10 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['provider_address'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Provider address'))
       ->setSettings(['max_length' => 256, 'text_processing' => 1])
-      ->setDisplayOptions('form', ['label' => 'above'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -274,7 +296,10 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
     $fields['sub_total'] = BaseFieldDefinition::create('decimal')
       ->setLabel(t('Subtotal'))
       ->setSettings(['precision' => 32, 'scale' => 2])
-      ->setDisplayOptions('form', ['label' => 'above'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
@@ -284,14 +309,23 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setSettings(['precision' => 32, 'scale' => 2])
       ->setDisplayOptions('form', ['label' => 'above'])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', ['label' => 'above'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['total'] = BaseFieldDefinition::create('decimal')
       ->setLabel(t('Total'))
       ->setSettings(['precision' => 32, 'scale' => 2])
-      ->setDisplayOptions('form', ['label' => 'above'])
-      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayOptions('view', ['label' => 'above'])
       ->setDisplayConfigurable('view', TRUE);
 
@@ -301,7 +335,10 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setSettings(['max_length' => 256, 'text_processing' => 1])
       ->setDisplayOptions('form', ['label' => 'above'])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', ['label' => 'above'])
+      ->setDisplayOptions('form', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')

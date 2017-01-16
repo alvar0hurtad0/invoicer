@@ -337,7 +337,7 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
         'label' => 'above',
-        'weight' => 0,
+        'weight' => 5,
       ])
       ->setDisplayConfigurable('view', TRUE);
 

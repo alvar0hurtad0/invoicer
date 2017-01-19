@@ -33,9 +33,9 @@ install:
 
   # Install libraries
   - composer install --dev
-  
+
   # Install drupal default profile
   - drush --verbose site-install invoicer --db-url=mysql://root:@127.0.0.1/drupal --yes
 
 # run tests
-script: php core/scripts/run-tests.sh
+script: php core/scripts/run-tests.sh invoicer

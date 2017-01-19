@@ -38,4 +38,4 @@ install:
   - drush --verbose site-install invoicer --db-url=mysql://root:@127.0.0.1/drupal --yes
 
 # run tests
-script: php core/scripts/run-tests.sh invoicer
+script: sudo -u www-data php ./core/scripts/run-tests.sh --url http://localhost/ invoicer

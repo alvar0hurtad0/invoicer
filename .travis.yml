@@ -34,8 +34,9 @@ install:
   # Install libraries
   - composer install --dev
 
-  # Install drupal default profile
+  # Install drupal default profile and simpletest
   - drush --verbose site-install invoicer --db-url=mysql://root:@127.0.0.1/drupal --yes
+  - drush en simpletest --yes
 
   # Prepare folders to test executions
   - sudo chown www-data /home/travis/

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\invoicer\Tests;
+namespace Drupal\Tests\invoicer;
 
 use Drupal\simpletest\WebTestBase;
 

@@ -37,5 +37,8 @@ install:
   # Install drupal default profile
   - drush --verbose site-install invoicer --db-url=mysql://root:@127.0.0.1/drupal --yes
 
+  # Prepare folders to test executions
+  - sudo chown www-data /home/travis/.hhvm.hhbc
+  - sudo chown www-data /var/www/.hhvm.hhbc
 # run tests
 script: sudo -u www-data php ./core/scripts/run-tests.sh --url http://localhost/ --module invoicer --dburl mysql://root:@127.0.0.1/drupal

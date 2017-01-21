@@ -28,7 +28,7 @@ class LineItemWidget extends WidgetBase {
       '#default_value' => $items->get($delta)->get('item')->getValue(),
       '#size' => 50,
       '#maxlength' => 128,
-      '#attributes' => ['style' => 'float: left'],
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $quantity = $items->get($delta)->get('quantity')->getValue();
@@ -40,7 +40,8 @@ class LineItemWidget extends WidgetBase {
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
+      '#step' => 0.01,
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $ammount = $items->get($delta)->get('ammount')->getValue();
@@ -52,7 +53,8 @@ class LineItemWidget extends WidgetBase {
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
+      '#step' => 0.01,
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $vat = $items->get($delta)->get('vat')->getValue();
@@ -62,7 +64,7 @@ class LineItemWidget extends WidgetBase {
       '#title' => t('Vat'),
       '#default_value' => $vat,
       '#options' => ['0' => '0%', '21' => '21%', '19'=> '19%'],
-      '#attributes' => ['style' => 'float: left'],
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $elements['base_price'] = [
@@ -72,17 +74,18 @@ class LineItemWidget extends WidgetBase {
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
+      '#step' => 0.01,
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $elements['total_price'] = [
       '#type' => 'number',
       '#title' => t('Total price'),
       '#default_value' => $quantity * $ammount * (1 + $vat * (0.01)),
-      '#size' => 4,
-      '#scale' => 2,
+      '#size' => 3,
       '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
+      '#step' => 0.01,
+      '#attributes' => ['style' => 'display: inline-block'],
     ];
     return $elements;
   }

@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - invoicer_invoice
+id: invoice_base.field_items
+field_name: field_items
+entity_type: invoice_base
+type: line_item
+settings: {  }
+module: invoicer_invoice
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

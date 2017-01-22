@@ -28,7 +28,6 @@ class LineItemWidget extends WidgetBase {
       '#default_value' => $items->get($delta)->get('item')->getValue(),
       '#size' => 50,
       '#maxlength' => 128,
-      '#attributes' => ['style' => 'float: left'],
     ];
 
     $quantity = $items->get($delta)->get('quantity')->getValue();
@@ -37,10 +36,10 @@ class LineItemWidget extends WidgetBase {
       '#type' => 'number',
       '#title' => t('Quantity'),
       '#default_value' => $quantity,
-      '#size' => 4,
+      '#size' => 2,
       '#scale' => 2,
-      '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
+      '#step' => 0.01,
+      '#maxlength' => 4,
     ];
 
     $ammount = $items->get($delta)->get('ammount')->getValue();
@@ -52,6 +51,7 @@ class LineItemWidget extends WidgetBase {
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
+        '#step' => 0.01,
       '#attributes' => ['style' => 'float: left'],
     ];
 
@@ -62,13 +62,13 @@ class LineItemWidget extends WidgetBase {
       '#title' => t('Vat'),
       '#default_value' => $vat,
       '#options' => ['0' => '0%', '21' => '21%', '19'=> '19%'],
-      '#attributes' => ['style' => 'float: left'],
     ];
 
     $elements['base_price'] = [
       '#type' => 'number',
       '#title' => t('Base price'),
       '#default_value' => $quantity * $ammount,
+        '#step' => 0.01,
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
@@ -81,8 +81,8 @@ class LineItemWidget extends WidgetBase {
       '#default_value' => $quantity * $ammount * (1 + $vat * (0.01)),
       '#size' => 4,
       '#scale' => 2,
+        '#step' => 0.01,
       '#maxlength' => 6,
-      '#attributes' => ['style' => 'float: left'],
     ];
     return $elements;
   }

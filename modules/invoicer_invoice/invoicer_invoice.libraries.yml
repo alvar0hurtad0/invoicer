@@ -1,0 +1,7 @@
+invoice_form:
+  version: 1.x
+  js:
+    js/InvoiceForm.js: {}
+  css:
+    theme:
+      css/InvoiceForm.css: {}

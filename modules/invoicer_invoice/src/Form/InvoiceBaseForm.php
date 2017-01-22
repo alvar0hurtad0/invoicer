@@ -26,6 +26,8 @@ class InvoiceBaseForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
+
+    $form['#attached']['library'][] = 'invoicer_invoice/invoice_form';
     // Control fieldset.
     $form['control'] = [
       '#type' => 'fieldset',

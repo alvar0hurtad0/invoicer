@@ -18,6 +18,11 @@
     width: 5rem;
 }
 
+.field--type-line-item .form-item .form-number.quantity{
+    width: 4rem;
+}
+
+
 #edit-abstract {
     clear: both;
 }

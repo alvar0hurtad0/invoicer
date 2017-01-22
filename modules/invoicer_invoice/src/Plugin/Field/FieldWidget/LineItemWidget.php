@@ -40,6 +40,7 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
       '#step' => 0.01,
       '#maxlength' => 4,
+      '#attributes' => ['class' => ['quantity']],
     ];
 
     $ammount = $items->get($delta)->get('ammount')->getValue();
@@ -72,7 +73,6 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
       '#maxlength' => 6,
       '#step' => 0.01,
-      '#attributes' => ['style' => 'display: inline-block'],
     ];
 
     $elements['total_price'] = [

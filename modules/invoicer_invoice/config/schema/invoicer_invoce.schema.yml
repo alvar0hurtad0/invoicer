@@ -1,0 +1,7 @@
+invoicer_invoice.settings:
+  type: config_object
+  label: 'Invoicer invoice settings.'
+  mapping:
+    vat_types:
+      type: sequence
+      label: 'Vat Types'

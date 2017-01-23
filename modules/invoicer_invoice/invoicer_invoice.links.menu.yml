@@ -1,14 +1,15 @@
 
 # Invoice base menu items definition
 entity.invoice_base.collection:
-  title: 'Invoice base list'
+  title: 'Invoice'
   route_name: entity.invoice_base.collection
   description: 'List Invoice base entities'
-  parent: system.admin_structure
+  parent: system.admin
   weight: 100
 
 invoice_base.admin.structure.settings:
   title: Invoice base settings
   description: 'Configure Invoice base entities'
   route_name: invoice_base.settings
-  parent: system.admin_structure
+  parent: entity.invoice_base.collection
+  weight: 200

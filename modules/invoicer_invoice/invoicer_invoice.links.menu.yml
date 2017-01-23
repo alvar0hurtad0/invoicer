@@ -13,3 +13,10 @@ invoice_base.admin.structure.settings:
   route_name: invoice_base.settings
   parent: entity.invoice_base.collection
   weight: 200
+
+invoice_base.admin.config.settings:
+  title: Invoicer invoice config
+  description: 'Configure Invoicer Invoice'
+  route_name: invoicer_invoice.settings.form
+  parent: entity.invoice_base.collection
+  weight: 300

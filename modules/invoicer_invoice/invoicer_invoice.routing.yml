@@ -1,0 +1,7 @@
+invoicer_invoice.settings.form:
+  path: '/admin/config/invoicer'
+  defaults:
+    _form: '\Drupal\invoicer_invoice\Form\InvoicerInvoiceConfigForm'
+    _title: 'Invoicer Settings'
+  requirements:
+    _permission: 'administer Invoice settings'

@@ -20,3 +20,8 @@ view published invoice base entities:
 
 view unpublished invoice base entities:
   title: 'View unpublished Invoice base entities'
+
+administer Invoice settings:
+  title: 'Administer Invoice settings'
+  description: 'Allow to access the administration form to configure vat and other variables.'
+  restrict access: true

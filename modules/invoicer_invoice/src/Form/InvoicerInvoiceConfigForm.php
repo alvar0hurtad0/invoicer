@@ -16,12 +16,14 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class InvoicerInvoiceConfigForm extends ConfigFormBase {
   protected $delimiter;
+  protected $configuration;
 
   public function __construct(
-    \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+    ConfigFactoryInterface $config_factory
   ) {
     parent::__construct($config_factory);
-    $this->delimiter= "|";
+    $this->delimiter = "|";
+    $this->configuration = $config_factory->getEditable('invoicer_invoice.settings');
   }
 
   /**
@@ -42,8 +44,6 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('invoicer_invoice.settings');
-
     $form = array();
 
     $form['vat_types'] = array(
@@ -51,7 +51,7 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
       '#title' => t('VAT types'),
       '#size' => 5000,
       '#maxlength' => 5000,
-      '#default_value' => $this->getFormattedValues($config->get('vat_types')),
+      '#default_value' => $this->getFormattedValues($this->configuration->get('vat_types')),
       '#description' => t('The VAT types'),
     );
 
@@ -62,17 +62,14 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
-    $config = $this->config('invoicer_invoice.settings');
-
     $form_state->cleanValues();
     foreach ($form_state->getValues() as $key => $value) {
-      $values = null;
+      $values = NULL;
       if ($key == 'vat_types') {
         $vatTypes = explode("\n", $value);
 
         $result = [];
-        foreach($vatTypes as $index => $vatType) {
+        foreach ($vatTypes as $index => $vatType) {
           $vatType = trim($vatType);
 
           $position = mb_strpos($vatType, $this->delimiter);
@@ -88,16 +85,15 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
         $values = $result;
       }
 
-      $config->set($key, $values);
+      $this->configuration->set($key, $values);
     }
 
-    $config->save();
+    $this->configuration->save();
 
     parent::submitForm($form, $form_state);
   }
 
-  private function getFormattedValues($values)
-  {
+  private function getFormattedValues($values) {
     $result = [];
     foreach ($values as $value) {
       $result[] = "{$value['value']}{$this->delimiter}{$value['value_label']}";

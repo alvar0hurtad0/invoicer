@@ -7,6 +7,7 @@
 
 namespace Drupal\invoicer_invoice\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -14,6 +15,14 @@ use Drupal\Core\Form\FormStateInterface;
  * Configure file system settings for this site.
  */
 class InvoicerInvoiceConfigForm extends ConfigFormBase {
+  protected $delimiter;
+
+  public function __construct(
+    \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+  ) {
+    parent::__construct($config_factory);
+    $this->delimiter= "|";
+  }
 
   /**
    * {@inheritdoc}
@@ -40,9 +49,9 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
     $form['vat_types'] = array(
       '#type' => 'textarea',
       '#title' => t('VAT types'),
-      '#size' => 60,
-      '#maxlength' => 60,
-      '#default_value' => implode("\n", $config->get('vat_types')),
+      '#size' => 5000,
+      '#maxlength' => 5000,
+      '#default_value' => $this->getFormattedValues($config->get('vat_types')),
       '#description' => t('The VAT types'),
     );
 
@@ -58,20 +67,28 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
 
     $form_state->cleanValues();
     foreach ($form_state->getValues() as $key => $value) {
+      $values = null;
       if ($key == 'vat_types') {
-        $values = explode("\n", $value);
+        $vatTypes = explode("\n", $value);
 
-        $values = array_map(function ($value) {
+        $result = [];
+        foreach($vatTypes as $index => $vatType) {
+          $vatType = trim($vatType);
 
-          return trim($value);
-        }, $values);
+          $position = mb_strpos($vatType, $this->delimiter);
 
-        $values = array_filter($values, function ($value) {
-          return (!empty($value)) && is_numeric($value);
-        });
+          $vat = trim(mb_substr($vatType, 0, $position));
+          $vatTypeHumanReadable = trim(mb_substr($vatType, $position + 1, mb_strlen($vatType)));
+          if (is_numeric($vat)) {
+            $result[$index]['value'] = $vat;
+            $result[$index]['value_label'] = $vatTypeHumanReadable;
+          }
+        }
 
-        $config->set($key, $values);
+        $values = $result;
       }
+
+      $config->set($key, $values);
     }
 
     $config->save();
@@ -79,4 +96,12 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
   }
 
+  private function getFormattedValues($values)
+  {
+    $result = [];
+    foreach ($values as $value) {
+      $result[] = "{$value['value']}{$this->delimiter}{$value['value_label']}";
+    }
+    return implode("\n", $result);
+  }
 }

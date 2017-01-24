@@ -61,8 +61,10 @@ class LineItemWidget extends WidgetBase {
     $config = \Drupal::service('config.factory')->get('invoicer_invoice.settings');
     $vatOptions = $config->get('vat_types');
     $options = [];
-    foreach ($vatOptions as $vat) {
-        $options[$vat] = $vat . '%';
+    foreach ($vatOptions as $vatOption) {
+      $value = $vatOption['value'];
+      $vatType = $vatOption['value_label'];
+      $options[$value] = $vatType;
     };
 
     $elements['vat'] = [

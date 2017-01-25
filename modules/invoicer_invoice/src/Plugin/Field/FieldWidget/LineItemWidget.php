@@ -53,6 +53,7 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
       '#maxlength' => 6,
       '#step' => 0.01,
+      '#attributes' => ['class' => ['amount']],
     ];
 
     $vat = $items->get($delta)->get('vat')->getValue();
@@ -72,6 +73,7 @@ class LineItemWidget extends WidgetBase {
       '#title' => t('Vat'),
       '#default_value' => $vat,
       '#options' => $options,
+      '#attributes' => ['class' => ['vat']],
     ];
 
     $elements['base_price'] = [
@@ -83,6 +85,7 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
       '#maxlength' => 6,
       '#step' => 0.01,
+      '#attributes' => ['class' => ['base_price']],
     ];
 
     $elements['total_price'] = [
@@ -93,6 +96,7 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
         '#step' => 0.01,
       '#maxlength' => 6,
+      '#attributes' => ['class' => ['total_price']]
     ];
     return $elements;
   }

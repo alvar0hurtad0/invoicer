@@ -2,7 +2,7 @@
 
 namespace Drupal\invoicer_invoice\Form;
 
-use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -10,7 +10,26 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @ingroup invoicer_invoice
  */
-class InvoiceBaseForm extends ContentEntityForm {
+class InvoiceBaseForm extends FormBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormId() {
+    return 'amazing_forms_contribute_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+  }
 
   /**
    * {@inheritdoc}
@@ -28,6 +47,7 @@ class InvoiceBaseForm extends ContentEntityForm {
     $form = parent::buildForm($form, $form_state);
 
     $form['#attached']['library'][] = 'invoicer_invoice/invoice_form';
+
     // Control fieldset.
     $form['control'] = [
       '#type' => 'fieldset',
@@ -81,6 +101,23 @@ class InvoiceBaseForm extends ContentEntityForm {
 
     $form['comments']['#weight'] = 5;
 
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function form(array $form, FormStateInterface $form_state) {
+    // Add #process and #after_build callbacks.
+    $form['#process'][] = '::processForm';
+    $form['#after_build'][] = '::afterBuild';
+
+    $form['customer_ids'] = [
+      'label' => 'above',
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ];
+    $this->buildForm($form, $form_state);
     return $form;
   }
 

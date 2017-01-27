@@ -11,9 +11,7 @@ use Drupal\user\EntityOwnerInterface;
  *
  * @ingroup invoicer_invoice
  */
-interface InvoiceBaseInterface extends  ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
-
-  // Add get/set methods for your configuration properties here.
+interface InvoiceBaseInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
    * Gets the Invoice base name.
@@ -67,7 +65,7 @@ interface InvoiceBaseInterface extends  ContentEntityInterface, EntityChangedInt
    * Sets the published status of a Invoice base.
    *
    * @param bool $published
-   *   TRUE to set this Invoice base to published, FALSE to set it to unpublished.
+   *   TRUE to set this Invoice base to published, FALSE to unpublished.
    *
    * @return \Drupal\invoicer_invoice\Entity\InvoiceBaseInterface
    *   The called Invoice base entity.

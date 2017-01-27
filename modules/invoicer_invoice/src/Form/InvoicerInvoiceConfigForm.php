@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\invoicer_invoice\Form\InvoicerInvoiceConfigForm.
- */
-
 namespace Drupal\invoicer_invoice\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -18,9 +13,10 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
   protected $delimiter;
   protected $configuration;
 
-  public function __construct(
-    ConfigFactoryInterface $config_factory
-  ) {
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
     parent::__construct($config_factory);
     $this->delimiter = "|";
     $this->configuration = $config_factory->getEditable('invoicer_invoice.settings');
@@ -93,11 +89,21 @@ class InvoicerInvoiceConfigForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
   }
 
-  private function getFormattedValues($values) {
+  /**
+   * Convert a values array into a string to use in textareas.
+   *
+   * @param array $values
+   *   The array of [value => value_label] elements.
+   *
+   * @return string
+   *   String one element per line in format value|value_label
+   */
+  private function getFormattedValues(array $values) {
     $result = [];
     foreach ($values as $value) {
       $result[] = "{$value['value']}{$this->delimiter}{$value['value_label']}";
     }
     return implode("\n", $result);
   }
+
 }

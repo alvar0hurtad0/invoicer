@@ -1,0 +1,26 @@
+# @file
+# .travis.yml - Drupal 8 Travis CI Integration
+
+language: php
+
+php:
+  - 7
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+  - composer self-update
+
+install:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Install libraries
+  - composer install --dev
+
+# run tests
+script: 
+  - ./vendor/bin/phpcs

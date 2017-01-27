@@ -1,0 +1,9 @@
+{
+    "name": "drupal/invoicer",
+    "description": "Distribution to build a drupal-based invoice system.",
+    "type": "drupal-profile",
+    "license": "GPL-2.0+",
+    "require-dev": {
+        "drupal/coder": "~8.2"
+    }
+}

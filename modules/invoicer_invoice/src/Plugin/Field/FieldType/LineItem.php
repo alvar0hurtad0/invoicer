@@ -1,5 +1,11 @@
 <?php
 
+namespace Drupal\invoicer_invoice\Plugin\Field\FieldType;
+
+use Drupal\Core\Field\FieldItemBase;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\TypedData\DataDefinition;
+
 /**
  * Provides a field type of items for the invoices.
  *
@@ -10,13 +16,6 @@
  *   default_formatter = "line_item_formatter"
  * )
  */
-
-namespace Drupal\invoicer_invoice\Plugin\Field\FieldType;
-
-use Drupal\Core\Field\FieldItemBase;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\TypedData\DataDefinition;
-
 class LineItem extends FieldItemBase {
 
   /**
@@ -66,7 +65,6 @@ class LineItem extends FieldItemBase {
 
     $properties['ammount'] = DataDefinition::create('float')
       ->setLabel(t('Item ammount'));
-
 
     $properties['vat'] = DataDefinition::create('float')
       ->setLabel(t('Item vat'));

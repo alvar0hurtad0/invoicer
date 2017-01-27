@@ -1,6 +1,14 @@
 <?php
 
+namespace Drupal\invoicer_invoice\Plugin\Field\FieldWidget;
+
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\WidgetBase;
+use Drupal\Core\Form\FormStateInterface;
+
 /**
+ * Witget for line_item elements.
+ *
  * @FieldWidget(
  *   id = "line_item_widget",
  *   label = @Translation("Line item widget"),
@@ -9,13 +17,6 @@
  *   }
  * )
  */
-
-namespace Drupal\invoicer_invoice\Plugin\Field\FieldWidget;
-
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
-use Drupal\Core\Form\FormStateInterface;
-
 class LineItemWidget extends WidgetBase {
 
   /**
@@ -31,7 +32,7 @@ class LineItemWidget extends WidgetBase {
     ];
 
     $quantity = $items->get($delta)->get('quantity')->getValue();
-    $quantity = (!is_null($quantity)?$quantity:0);
+    $quantity = (!is_null($quantity) ? $quantity : 0);
     $elements['quantity'] = [
       '#type' => 'number',
       '#title' => t('Quantity'),
@@ -44,7 +45,7 @@ class LineItemWidget extends WidgetBase {
     ];
 
     $ammount = $items->get($delta)->get('ammount')->getValue();
-    $ammount = (!is_null($ammount)?$ammount:0);
+    $ammount = (!is_null($ammount) ? $ammount : 0);
     $elements['ammount'] = [
       '#type' => 'number',
       '#title' => t('Ammount'),
@@ -56,7 +57,7 @@ class LineItemWidget extends WidgetBase {
     ];
 
     $vat = $items->get($delta)->get('vat')->getValue();
-    $vat = (!is_null($vat)?$vat:0);
+    $vat = (!is_null($vat) ? $vat : 0);
 
     $config = \Drupal::service('config.factory')->get('invoicer_invoice.settings');
     $vatOptions = $config->get('vat_types');
@@ -78,7 +79,7 @@ class LineItemWidget extends WidgetBase {
       '#type' => 'number',
       '#title' => t('Base price'),
       '#default_value' => $quantity * $ammount,
-        '#step' => 0.01,
+      '#step' => 0.01,
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
@@ -91,7 +92,7 @@ class LineItemWidget extends WidgetBase {
       '#default_value' => $quantity * $ammount * (1 + $vat * (0.01)),
       '#size' => 4,
       '#scale' => 2,
-        '#step' => 0.01,
+      '#step' => 0.01,
       '#maxlength' => 6,
     ];
     return $elements;

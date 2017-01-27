@@ -16,7 +16,7 @@
     Drupal.behaviors.invoicerInvoice = {
         attach: function (context) {
 
-            function getSiblingsValues ($element){
+            function getSiblingsValues($element){
                 var $parent = jQuery($element.closest("td"));
 
                 var $values = {
@@ -28,13 +28,13 @@
                 return $values;
             }
 
-            $(".quantity").change(function() {
+            $(".quantity").change(function () {
                 var $siblings = getSiblingsValues($(this));
 
                 // @todo: calculate Base price and total price.
             });
 
-            //@todo: implement the amount.change, vat.change base-price.change and total price.change.
+            // @todo: implement the amount.change, vat.change base-price.change and total price.change.
         }
     };
 

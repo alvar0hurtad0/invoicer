@@ -16,7 +16,7 @@ class InvoicerTest extends WebTestBase {
   /**
    * Tests Invoicer installation profile.
    */
-  function testInvoicer() {
+  public function testInvoicer() {
     $this->assertTrue(TRUE);
   }
 

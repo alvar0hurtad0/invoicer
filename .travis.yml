@@ -18,28 +18,9 @@ before_install:
 install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-  # Install Drush
-  - composer global require drush/drush:dev-master
-  - phpenv rehash
-
-  # Create MySQL Database
-  - mysql -e 'create database drupal;'
-
-  # Download Drupal
-  - cd ..
-  - drush dl drupal-8 --drupal-project-rename=drupal
-  - mv invoicer drupal/profiles
-  - cd drupal
-
   # Install libraries
   - composer install --dev
 
-  # Install drupal default profile and simpletest
-  - drush --verbose site-install invoicer --db-url=mysql://root:@127.0.0.1/drupal --yes
-  - drush en simpletest --yes
-
-  # Prepare folders to test executions
-  - sudo chown www-data /home/travis/
 # run tests
 script: 
-  - sudo -u www-data php ./core/scripts/run-tests.sh --url http://localhost/ --module invoicer --dburl mysql://root:@127.0.0.1/drupal --color
+  - ./vendor/bin/phpcs

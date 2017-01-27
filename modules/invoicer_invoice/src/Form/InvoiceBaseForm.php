@@ -34,7 +34,20 @@ class InvoiceBaseForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+  public function form(array $form, FormStateInterface $form_state) {
+    $form = parent::form($form, $form_state);
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form = parent::buildForm($form, $form_state);
+
+    $form['#attached']['library'][] = 'invoicer_invoice/invoice_form';
+
     // Control fieldset.
     $form['control'] = [
       '#type' => 'fieldset',

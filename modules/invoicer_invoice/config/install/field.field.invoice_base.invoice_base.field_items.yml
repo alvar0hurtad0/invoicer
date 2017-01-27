@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.invoice_base.field_items
+  module:
+    - invoicer_invoice
+id: invoice_base.invoice_base.field_items
+field_name: field_items
+entity_type: invoice_base
+bundle: invoice_base
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: line_item

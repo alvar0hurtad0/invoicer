@@ -35,9 +35,9 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
     $row['name'] = $this->l(
       $entity->label(),
       new Url(
-        'entity.invoice_base.edit_form', array(
+        'entity.invoice_base.edit_form', [
           'invoice_base' => $entity->id(),
-        )
+        ]
       )
     );
     $row['date'] = $entity->date->value;

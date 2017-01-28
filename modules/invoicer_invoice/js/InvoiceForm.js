@@ -15,17 +15,24 @@
      */
     Drupal.behaviors.invoicerInvoice = {
         attach: function (context) {
+            $(".quantity").change(updateLinePrice);
+            $(".amount").change(updateLinePrice);
+            $(".vat").change(updateLinePrice);
 
-            function getSiblingsValues($element){
-                var $parent = jQuery($element.closest("td"));
+            function updateLinePrice() {
+                var $parent = jQuery($(this).closest("td"));
+                var $siblings = getSiblingsValues($parent);
 
-                var $values = {
+                $parent.find(".base_price").val($siblings["quantity"] * $siblings["amount"]);
+                $parent.find(".total_price").val($siblings["quantity"] * $siblings["amount"] * (1 + ($siblings["vat"]/100)));
+            }
+
+            function getSiblingsValues ($parent){
+                return {
                     "quantity": $parent.find(".quantity").val(),
-                    // @todo: get values of all fields.
-                    // You may need to add some extra classes.
+                    "amount": $parent.find(".amount").val(),
+                    "vat": $parent.find(".vat").val()
                 };
-
-                return $values;
             }
 
             $(".quantity").change(function () {

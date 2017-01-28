@@ -44,16 +44,17 @@ class LineItemWidget extends WidgetBase {
       '#attributes' => ['class' => ['quantity']],
     ];
 
-    $ammount = $items->get($delta)->get('ammount')->getValue();
-    $ammount = (!is_null($ammount) ? $ammount : 0);
-    $elements['ammount'] = [
+    $amount = $items->get($delta)->get('amount')->getValue();
+    $amount = (!is_null($amount) ? $amount : 0);
+    $elements['amount'] = [
       '#type' => 'number',
-      '#title' => t('Ammount'),
-      '#default_value' => $ammount,
+      '#title' => t('Amount'),
+      '#default_value' => $amount,
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
       '#step' => 0.01,
+      '#attributes' => ['class' => ['amount']],
     ];
 
     $vat = $items->get($delta)->get('vat')->getValue();
@@ -73,27 +74,30 @@ class LineItemWidget extends WidgetBase {
       '#title' => t('Vat'),
       '#default_value' => $vat,
       '#options' => $options,
+      '#attributes' => ['class' => ['vat']],
     ];
 
     $elements['base_price'] = [
       '#type' => 'number',
       '#title' => t('Base price'),
-      '#default_value' => $quantity * $ammount,
+      '#default_value' => $quantity * $amount,
       '#step' => 0.01,
       '#size' => 4,
       '#scale' => 2,
       '#maxlength' => 6,
       '#step' => 0.01,
+      '#attributes' => ['class' => ['base_price']],
     ];
 
     $elements['total_price'] = [
       '#type' => 'number',
       '#title' => t('Total price'),
-      '#default_value' => $quantity * $ammount * (1 + $vat * (0.01)),
+      '#default_value' => $quantity * $amount * (1 + $vat * (0.01)),
       '#size' => 4,
       '#scale' => 2,
       '#step' => 0.01,
       '#maxlength' => 6,
+      '#attributes' => ['class' => ['total_price']]
     ];
     return $elements;
   }

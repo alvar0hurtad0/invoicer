@@ -23,6 +23,8 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
     $header['id'] = $this->t('Invoice base ID');
     $header['name'] = $this->t('Name');
     $header['date'] = $this->t('Date');
+    $header['sub_total'] = $this->t('Subtotal price');
+    $header['total'] = $this->t('Total price');
     return $header + parent::buildHeader();
   }
 
@@ -41,6 +43,8 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
       )
     );
     $row['date'] = $entity->date->value;
+    $row['sub_total'] = $entity->sub_total->value;
+    $row['total'] = $entity->total->value;
     return $row + parent::buildRow($entity);
   }
 

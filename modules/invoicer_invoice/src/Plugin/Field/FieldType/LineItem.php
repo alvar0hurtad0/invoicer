@@ -34,7 +34,7 @@ class LineItem extends FieldItemBase {
           'type' => 'float',
           'not null' => FALSE,
         ],
-        'ammount' => [
+        'amount' => [
           'type' => 'float',
           'not null' => FALSE,
         ],
@@ -64,8 +64,8 @@ class LineItem extends FieldItemBase {
     $properties['quantity'] = DataDefinition::create('float')
       ->setLabel(t('Item quantity'));
 
-    $properties['ammount'] = DataDefinition::create('float')
-      ->setLabel(t('Item ammount'));
+    $properties['amount'] = DataDefinition::create('float')
+      ->setLabel(t('Item amount'));
 
 
     $properties['vat'] = DataDefinition::create('float')

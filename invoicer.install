@@ -13,21 +13,23 @@
  * @see system_install()
  */
 function invoicer_install() {
+  $configFactory = \Drupal::getContainer()->get('config.factory');
+
   // Set front page to "node".
-  \Drupal::configFactory()
+  $configFactory
     ->getEditable('system.site')
     ->set('page.front', '/node')
     ->save(TRUE);
 
   // Set the default and admin theme.
-  \Drupal::configFactory()
+  $configFactory
     ->getEditable('system.theme')
     ->set('default', 'bartik')
     ->set('admin', 'seven')
     ->save(TRUE);
 
   // Enable the admin theme.
-  \Drupal::configFactory()
+  $configFactory
     ->getEditable('node.settings')
     ->set('use_admin_theme', TRUE)
     ->save(TRUE);

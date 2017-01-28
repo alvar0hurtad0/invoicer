@@ -51,12 +51,12 @@
                 $parent.find(".base_price").val(parseFloat($basePrice).toFixed(2));
             }
 
-            function getSiblingsValues ($parent){
+            function getSiblingsValues($parent) {
                 return {
                     "quantity": $parent.find(".quantity").val(),
                     "amount": $parent.find(".amount").val(),
                     "vat": $parent.find(".vat").val(),
-                    "vatFactor": 1 + ($parent.find(".vat").val()/100),
+                    "vatFactor": 1 + ($parent.find(".vat").val() / 100),
                     "base_price": $parent.find(".base_price").val(),
                     "total_price": $parent.find(".total_price").val()
                 };

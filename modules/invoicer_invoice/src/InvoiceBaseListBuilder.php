@@ -20,7 +20,6 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Invoice base ID');
     $header['name'] = $this->t('Name');
     $header['date'] = $this->t('Date');
     $header['sub_total'] = $this->t('Subtotal price');
@@ -33,7 +32,6 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\invoicer_invoice\Entity\InvoiceBase */
-    $row['id'] = $entity->id();
     $row['name'] = $this->l(
       $entity->label(),
       new Url(

@@ -24,10 +24,10 @@
                 var $siblings = getSiblingsValues($parent);
 
                 $parent.find(".base_price").val($siblings["quantity"] * $siblings["amount"]);
-                $parent.find(".total_price").val($siblings["quantity"] * $siblings["amount"] * (1 + ($siblings["vat"]/100)));
+                $parent.find(".total_price").val($siblings["quantity"] * $siblings["amount"] * (1 + ($siblings["vat"] / 100)));
             }
 
-            function getSiblingsValues ($parent){
+            function getSiblingsValues($parent) {
                 return {
                     "quantity": $parent.find(".quantity").val(),
                     "amount": $parent.find(".amount").val(),

@@ -97,7 +97,7 @@ class LineItemWidget extends WidgetBase {
       '#scale' => 2,
       '#step' => 0.01,
       '#maxlength' => 6,
-      '#attributes' => ['class' => ['total_price']]
+      '#attributes' => ['class' => ['total_price']],
     ];
     return $elements;
   }

@@ -35,7 +35,7 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
     $row['name'] = $this->l(
       $entity->label(),
       new Url(
-        'entity.invoice_base.edit_form', [
+        'entity.invoice_base.canonical', [
           'invoice_base' => $entity->id(),
         ]
       )

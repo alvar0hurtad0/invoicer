@@ -28,9 +28,13 @@ function invoicer_invoice_help($route_name, RouteMatchInterface $route_match) {
  */
 function invoicer_invoice_theme() {
   return [
-    'invoicer_invoice' => [
+    'invoice_base' => [
       'template' => 'invoicer_invoice',
-      'render element' => 'children',
+      'render element' => 'element',
     ],
   ];
+}
+
+function template_preprocess_invoice_base($var) {
+  echo '';
 }

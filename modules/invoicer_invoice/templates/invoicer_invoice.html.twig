@@ -1,1 +1,26 @@
-<!-- Add you custom twig html here -->
+{{ attach_library('invoicer_invoice/invoice_view') }}
+
+<div{{ attributes.addClass('invoice_base') }}>
+    <h1>{{ element.name }}</h1>
+    <div class="date">{{ element.date }}</div>
+    <div class="number">{{ element.number }}</div>
+    <div class="clearfix">
+        <div class="group customer">
+            <h2>Customer</h2>
+            <div class="id">{{ element.customer_id }}</div>
+            <div class="name">{{ element.customer_name }}</div>
+            <div class="address">{{ element.customer_address }}</div>
+        </div>
+        <div class="group provider">
+            <h2>Provider</h2>
+            <div class="id">{{ element.provider_id }}</div>
+            <div class="name">{{ element.provider_name }}</div>
+            <div class="address">{{ element.provider_address }}</div>
+        </div>
+    </div>
+    <div class="clearfix">{{ element.field_items }}</div>
+    <div class="clearfix">
+        <div class="sub_total">{{ element.sub_total }}</div>
+        <div class="total">{{ element.total }}</div>
+    </div>
+</div>

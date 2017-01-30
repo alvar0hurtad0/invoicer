@@ -5,3 +5,9 @@ invoice_form:
   css:
     theme:
       css/InvoiceForm.css: {}
+
+invoice_view:
+  version: 1.x
+  css:
+    theme:
+      css/InvoiceView.css: {}

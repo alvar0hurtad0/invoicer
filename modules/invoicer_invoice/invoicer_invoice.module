@@ -34,7 +34,3 @@ function invoicer_invoice_theme() {
     ],
   ];
 }
-
-function template_preprocess_invoice_base($var) {
-  echo '';
-}

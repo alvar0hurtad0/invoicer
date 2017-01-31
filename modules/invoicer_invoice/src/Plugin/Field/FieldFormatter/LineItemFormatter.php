@@ -23,8 +23,6 @@ class LineItemFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-
-
     foreach ($items as $delta => $item) {
       $rows[$delta] = array(
         '#type' => 'html_tag',
@@ -34,7 +32,7 @@ class LineItemFormatter extends FormatterBase {
     }
     foreach ($items as $delta => $item) {
       // Calculated fields.
-      $base_price = $item->quantity *  $item->amount;
+      $base_price = $item->quantity * $item->amount;
       $total_price = $base_price * (1 + $item->vat / 100);
 
       // Build the row.

@@ -24,7 +24,7 @@ function invoicer_install() {
   // Set the default and admin theme.
   $configFactory
     ->getEditable('system.theme')
-    ->set('default', 'bartik')
+    ->set('default', 'seven')
     ->set('admin', 'seven')
     ->save(TRUE);
 

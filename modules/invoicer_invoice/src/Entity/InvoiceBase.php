@@ -210,6 +210,14 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['series'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Series'))
+      ->setDisplayOptions('view', array(
+        'label' => 'above',
+        'weight' => 0,
+      ))
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Is payed'))
       ->setDescription(t('A boolean indicating whether the Invoice is payed.'))
@@ -374,6 +382,15 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    parent::preSave($storage);
+    $date = strtotime($this->date->value);
+    $this->set('series', date('Y', $date));
   }
 
 }

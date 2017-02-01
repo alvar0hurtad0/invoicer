@@ -29,6 +29,8 @@
                 var $totalPrice = $basePrice * $siblings["vatFactor"];
                 $parent.find(".base_price").val(parseFloat($basePrice).toFixed(2));
                 $parent.find(".total_price").val(parseFloat($totalPrice).toFixed(2));
+
+                calculateTotalAmounts();
             }
 
             function updateAmountAndTotalPrice() {
@@ -39,6 +41,8 @@
                 var $amount = $siblings["base_price"] / $siblings["quantity"];
                 $parent.find(".amount").val(parseFloat($amount).toFixed(2));
                 $parent.find(".total_price").val(parseFloat($totalPrice).toFixed(2));
+
+                calculateTotalAmounts();
             }
 
             function updateAmountAndBasePrice() {
@@ -49,6 +53,8 @@
                 var $amount = $basePrice / $siblings["quantity"];
                 $parent.find(".amount").val(parseFloat($amount).toFixed(2));
                 $parent.find(".base_price").val(parseFloat($basePrice).toFixed(2));
+
+                calculateTotalAmounts();
             }
 
             function getSiblingsValues($parent) {
@@ -60,6 +66,27 @@
                     "base_price": $parent.find(".base_price").val(),
                     "total_price": $parent.find(".total_price").val()
                 };
+            }
+
+            function calculateTotalAmounts() {
+                var subtotal = 0;
+                var total = 0;
+                var vat;
+
+                $('.base_price').each(function () {
+                    subtotal += Number($(this).val());
+                });
+
+                $('.total_price').each(function () {
+                    total += Number($(this).val());
+                });
+
+                vat = total - subtotal;
+
+                $(".abstract-subtotal input").val(subtotal.toFixed(2));
+                $(".abstract-vat input").val(vat.toFixed(2));
+                $(".abstract-total input").val(total.toFixed(2));
+
             }
         }
     };

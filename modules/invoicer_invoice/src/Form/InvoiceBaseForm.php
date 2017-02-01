@@ -66,10 +66,15 @@ class InvoiceBaseForm extends ContentEntityForm {
 
     $form['abstract']['sub_total'] = $form['sub_total'];
     unset($form['sub_total']);
+    $form['abstract']['sub_total']['#attributes']['class'][] = 'abstract-subtotal';
+
     $form['abstract']['vat'] = $form['vat'];
     unset($form['vat']);
+    $form['abstract']['vat']['#attributes']['class'][] = 'abstract-vat';
+
     $form['abstract']['total'] = $form['total'];
     unset($form['total']);
+    $form['abstract']['total']['#attributes']['class'][] = 'abstract-total';
 
     $form['comments']['#weight'] = 5;
 

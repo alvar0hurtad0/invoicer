@@ -17,11 +17,27 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
   use LinkGeneratorTrait;
 
   /**
+   * Stores the sum of all subtotal on the list.
+   *
+   * @var int
+   */
+  protected $subTotal = 0;
+
+  /**
+   * Stores the sum of all total on the list.
+   *
+   * @var int
+   */
+  protected $total = 0;
+
+  /**
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['name'] = $this->t('Name');
     $header['date'] = $this->t('Date');
+    $header['Number'] = $this->t('Number');
+    $header['name'] = $this->t('Name');
+    $header['client_name'] = $this->t('Client name');
     $header['sub_total'] = $this->t('Subtotal price');
     $header['total'] = $this->t('Total price');
     return $header + parent::buildHeader();
@@ -32,6 +48,8 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\invoicer_invoice\Entity\InvoiceBase */
+    $row['date'] = $entity->date->value;
+    $row['number'] = $entity->number->value;
     $row['name'] = $this->l(
       $entity->label(),
       new Url(
@@ -40,10 +58,31 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
         ]
       )
     );
-    $row['date'] = $entity->date->value;
+    $row['customer_name'] = $entity->customer_name->value;
     $row['sub_total'] = $entity->sub_total->value;
     $row['total'] = $entity->total->value;
+
+    $this->subTotal += $entity->sub_total->value;
+    $this->total += $entity->total->value;
+
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function render() {
+    $build = parent::render();
+
+    $build['table']['#rows'][] = [
+      '',
+      '',
+      '',
+      '',
+      $this->subTotal, $this->total,
+      '',
+    ];
+    return $build;
   }
 
 }

@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - user
-id: user.field_default_commens
-field_name: field_default_commens
+id: user.field_default_comments
+field_name: field_default_comments
 entity_type: user
 type: string_long
 settings:

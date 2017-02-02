@@ -4,6 +4,7 @@ namespace Drupal\invoicer_invoice\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
 
 /**
  * Form controller for Invoice base edit forms.
@@ -16,6 +17,7 @@ class InvoiceBaseForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $this->setDefaultValues();
     $form = parent::buildForm($form, $form_state);
 
     $form['#attached']['library'][] = 'invoicer_invoice/invoice_form';
@@ -78,6 +80,7 @@ class InvoiceBaseForm extends ContentEntityForm {
 
     $form['comments']['#weight'] = 5;
 
+    // Default values.
     return $form;
   }
 
@@ -102,6 +105,27 @@ class InvoiceBaseForm extends ContentEntityForm {
         ]));
     }
     $form_state->setRedirect('entity.invoice_base.canonical', ['invoice_base' => $entity->id()]);
+  }
+
+  /**
+   * Set values for empty invoices.
+   */
+  protected function setDefaultValues() {
+    // Load the current user.
+    $user = User::load(\Drupal::currentUser()->id());
+
+    if ($this->entity->provider_id->value == '') {
+      $this->entity->provider_id->value = $user->field_vat_id->value;
+    }
+    if ($this->entity->provider_name->value == '') {
+      $this->entity->provider_name->value = $user->field_name->value;
+    }
+    if ($this->entity->provider_address->value == '') {
+      $this->entity->provider_address->value = $user->field_address->value;
+    }
+    if ($this->entity->comments->value == '') {
+      $this->entity->comments->value = $user->field_default_comments->value;
+    }
   }
 
 }

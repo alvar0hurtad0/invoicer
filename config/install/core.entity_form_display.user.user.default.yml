@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.user.user.field_address
-    - field.field.user.user.field_default_commens
+    - field.field.user.user.field_default_comments
     - field.field.user.user.field_logo
     - field.field.user.user.field_name
     - field.field.user.user.field_vat_id
@@ -27,7 +27,7 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_default_commens:
+  field_default_comments:
     type: string_textarea
     weight: 4
     settings:

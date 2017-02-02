@@ -32,7 +32,7 @@ class LineItemWidget extends WidgetBase {
     ];
 
     $quantity = $items->get($delta)->get('quantity')->getValue();
-    $quantity = (!is_null($quantity) ? $quantity : 0);
+    $quantity = (!is_null($quantity) ? $quantity : 1);
     $elements['quantity'] = [
       '#type' => 'number',
       '#title' => t('Quantity'),

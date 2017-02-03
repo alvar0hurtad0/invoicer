@@ -33,3 +33,11 @@
 #edit-abstract div.form-wrapper {
   float: left;
 }
+
+.sub_total {
+  float: left;
+}
+
+.total {
+  float: left;
+}

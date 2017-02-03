@@ -2,3 +2,6 @@ services:
   invoicer_invoice.line_item_witget.config:
     class: Drupal\invoicer_invoice\LineItemWidget
     arguments: ['@config.factory']
+  invoicer_invoice.list_builder.base:
+    class: Drupal\invoicer_invoice\InvoiceBaseListBuilder
+    arguments: ['@form_builder']

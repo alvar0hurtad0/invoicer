@@ -371,6 +371,10 @@ class InvoiceBase extends ContentEntityBase implements InvoiceBaseInterface {
         'label' => 'above',
         'weight' => 5,
       ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')

@@ -114,6 +114,10 @@ class InvoiceBaseForm extends ContentEntityForm {
     // Load the current user.
     $user = User::load(\Drupal::currentUser()->id());
 
+    if ($this->entity->date->value == '') {
+      $this->entity->date->value = date('Y-m-d');
+    }
+
     if ($this->entity->provider_id->value == '') {
       $this->entity->provider_id->value = $user->field_vat_id->value;
     }

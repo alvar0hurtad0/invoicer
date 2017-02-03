@@ -31,6 +31,13 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
   protected $total = 0;
 
   /**
+   * The form builder service.
+   *
+   * @var \Drupal\Core\Form\FormBuilderInterface
+   */
+  protected $formBuilder;
+
+  /**
    * {@inheritdoc}
    */
   public function buildHeader() {
@@ -49,7 +56,7 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\invoicer_invoice\Entity\InvoiceBase */
     $row['date'] = $entity->date->value;
-    $row['number'] = $entity->number->value;
+    $row['number'] = $entity->series->value . '-' . $entity->number->value;
     $row['name'] = $this->l(
       $entity->label(),
       new Url(
@@ -74,6 +81,9 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
   public function render() {
     $build = parent::render();
 
+    $formBuilder = \Drupal::getContainer()->get('form_builder');
+    $build['filters'] = $formBuilder->getForm('Drupal\invoicer_invoice\Form\InvoicerInvoiceFilterForm');
+    $build['filters']['#weight'] = '-10';
     $build['table']['#rows'][] = [
       '',
       '',
@@ -83,6 +93,78 @@ class InvoiceBaseListBuilder extends EntityListBuilder {
       '',
     ];
     return $build;
+  }
+
+  /**
+   * Loads entity IDs using a pager sorted by the entity id.
+   *
+   * @return array
+   *   An array of entity IDs.
+   */
+  protected function getEntityIds() {
+    $query = $this->getStorage()->getQuery()
+      ->sort('number');
+
+    if (!empty($_SESSION['invoicer_invoice_filter']['series'])) {
+      $query->condition('series', $_SESSION['invoicer_invoice_filter']['series']);
+    }
+
+    if (!empty($_SESSION['invoicer_invoice_filter']['text'])) {
+      $or = $query->orConditionGroup()
+        ->condition('name', '%' . $_SESSION['invoicer_invoice_filter']['text'] . '%', 'LIKE')
+        ->condition('customer_name', '%' . $_SESSION['invoicer_invoice_filter']['text'] . '%', 'LIKE');
+      $query->condition($or);
+    }
+
+    if (!empty($_SESSION['invoicer_invoice_filter']['status'])) {
+      switch ($_SESSION['invoicer_invoice_filter']['status']) {
+        case "1":
+          $query->condition('status', TRUE);
+          break;
+
+        case "-1":
+          $query->condition('status', FALSE);
+          break;
+      }
+    }
+
+    if (!empty($_SESSION['invoicer_invoice_filter']['quarter'])) {
+      switch ($_SESSION['invoicer_invoice_filter']['quarter']) {
+        case "1":
+          $or = $query->orConditionGroup()
+            ->condition('date', '%-01-%', 'LIKE')
+            ->condition('date', '%-02-%', 'LIKE')
+            ->condition('date', '%-03-%', 'LIKE');
+          $query->condition($or);
+          break;
+
+        case "2":
+          $or = $query->orConditionGroup()
+            ->condition('date', '%-04-%', 'LIKE')
+            ->condition('date', '%-05-%', 'LIKE')
+            ->condition('date', '%-06-%', 'LIKE');
+          $query->condition($or);
+          break;
+
+        case "3":
+          $or = $query->orConditionGroup()
+            ->condition('date', '%-07-%', 'LIKE')
+            ->condition('date', '%-08-%', 'LIKE')
+            ->condition('date', '%-09-%', 'LIKE');
+          $query->condition($or);
+          break;
+
+        case "4":
+          $or = $query->orConditionGroup()
+            ->condition('date', '%-10-%', 'LIKE')
+            ->condition('date', '%-11-%', 'LIKE')
+            ->condition('date', '%-12-%', 'LIKE');
+          $query->condition($or);
+          break;
+
+      }
+    }
+    return $query->execute();
   }
 
 }

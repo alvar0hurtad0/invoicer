@@ -1,11 +1,18 @@
-This is a Drupal installation profile that provide a simple invoice tool.
+Invoicer is a simple invoice system based on Drupal.
 
-The features availables are:
- - Create a new invoice.
- - List invoces by user.
- - Mark as paid an invoice
- - Group by year all invoices and show a summary.
- 
- 
- License GPL 3:
- https://www.gnu.org/licenses/gpl-3.0.en.html
+It allows to:
+
+ - Create invoices with multiple items.
+ - Automatic VAT calculation.
+ - View all invoices filtered by year, quarter, or keywords.
+
+Who should use invoicer ?
+--
+
+Invoicer is very focus on the needed of freelances, but can be used as kickstart for more complex invoice system.
+
+Install
+--
+Just copy the project into the profiles folder of a drupal 8.x and install the invoice profile.
+
+License GPL 3: https://www.gnu.org/licenses/gpl-3.0.en.html

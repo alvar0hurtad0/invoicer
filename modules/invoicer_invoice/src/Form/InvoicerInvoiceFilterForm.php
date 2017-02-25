@@ -75,10 +75,14 @@ class InvoicerInvoiceFilterForm extends FormBase implements FormInterface {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['#attached']['library'][] = 'invoicer_invoice/invoice_list';
 
-    $form['filters'] = array(
+    $form['filters'] = [
       '#type' => 'fieldset',
-    );
+      '#attributes' => [
+        'class' => ['fieldgroup'],
+      ],
+    ];
 
     $form['filters']['status'] = $this->getFilters();
 
